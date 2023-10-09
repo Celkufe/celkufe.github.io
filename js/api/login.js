@@ -1,12 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const loginForm = document.getElementById("loginForm");
-  loginForm.addEventListener("submit", async (e) => {
+  const loginButton = document.getElementById("loginButton");
+
+  loginButton.addEventListener("click", async (e) => {
     e.preventDefault();
 
     const emailAddress = document.getElementById("emailAddress").value;
     const loginPassword = document.getElementById("loginPassword").value;
 
-    // Ganti URL sesuai dengan endpoint login Anda
     const apiUrl =
       "https://celengankita-be-d43faaa69857.herokuapp.com/api/auth/login";
 
@@ -16,10 +16,11 @@ document.addEventListener("DOMContentLoaded", () => {
       if (response.success) {
         // Login berhasil
         alert("Login successful");
-        window.location.reload("dashboard.html");
+        // Arahkan pengguna ke dashboard.html
+        window.location.href = "dashboard.html";
       } else {
         // Login gagal
-        alert("Login failed");
+        alert("Login failed. Silakan coba lagi.");
       }
     } catch (error) {
       console.error("Error:", error);
@@ -27,7 +28,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Fungsi loginUser
   async function loginUser(apiUrl, email, password) {
     const data = {
       email: email,
